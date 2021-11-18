@@ -1,15 +1,27 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <p>Name: <input type="text" v-model="newKittenParams.name"></p>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Name: <input type="text" v-model="newKittenParams.name"></li>
+        <li class="list-group-item">Age: <input type="text" v-model="newKittenParams.age"></li>
+        <li class="list-group-item">Image: <input type="text" v-model="newKittenParams.image"></li>
+      </ul>
+    </div>
+    <!-- <p>Name: <input type="text" v-model="newKittenParams.name"></p>
     <p>Age: <input type="text" v-model="newKittenParams.age"></p>
-    <button v-on:click="createFunction()">Add</button>
+    <p>Image: <input type="text" v-model="newKittenParams.image"></p>
+    <button v-on:click="createFunction()">Add</button> -->
     <br>
     <router-link to="/kittens">Back</router-link>
   </div>
 </template>
 
-<style></style>
+<style>
+  .card {
+    text-align: center;
+  }
+</style>
 
 <script>
   import axios from 'axios'

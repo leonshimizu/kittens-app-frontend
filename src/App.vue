@@ -43,10 +43,8 @@
 <style>
   .home {
     text-align: center;
-}
-{
-  body {
-    background-image: ulr('./asses/gaming-pattern.png');
   }
-}
+  body {
+    background-image: url('./assets/gaming-pattern.png');
+  }
 </style>
