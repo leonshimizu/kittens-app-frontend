@@ -1,13 +1,24 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    <router-link to="/kittens/new">Add Kitten</router-link>
     <ul>
       <li v-for="kitten in kittens">
         <p>ID: {{ kitten.id }}</p>
         <p>Name: {{ kitten.name }}</p>
         <p>Age: {{ kitten.age }}</p>
+        <button v-on:click="showModal(kitten)">Edit Kitten</button>
+        <hr>
       </li>
     </ul>
+    <dialog id="show-modal">
+      <form method="dialog">
+        <p>Name: <input type="text" v-model="currentKitten.name"></p>
+        <p>Age: <input type="text" v-model="currentKitten.age"></p>
+        <button v-on:click="updateFunction()">Update</button>
+        <button>Close</button>
+      </form>
+    </dialog>
   </div>
 </template>
 
@@ -19,7 +30,8 @@ import axios from 'axios'
     data: function () {
       return {
         message: "Welcome Kittens!",
-        kittens: {}
+        kittens: {},
+        currentKitten: {}
       };
     },
     created: function () {
@@ -33,6 +45,19 @@ import axios from 'axios'
           .then(response => {
             console.log(response.data);
             this.kittens = response.data;
+          })
+      },
+      showModal: function(theKitten) {
+        console.log("in the show modal");
+        this.currentKitten = theKitten;
+        document.querySelector("#show-modal").showModal();
+      },
+      updateFunction: function() {
+        console.log("in the update function");
+        axios 
+          .patch(`/kittens/${this.currentKitten.id}`, this.currentKitten)
+          .then(response => {
+            console.log(response.data);
           })
       }
     },

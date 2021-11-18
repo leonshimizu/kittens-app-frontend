@@ -4,6 +4,8 @@
     <p>Name: <input type="text" v-model="newKittenParams.name"></p>
     <p>Age: <input type="text" v-model="newKittenParams.age"></p>
     <button v-on:click="createFunction()">Add</button>
+    <br>
+    <router-link to="/kittens">Back</router-link>
   </div>
 </template>
 
@@ -26,6 +28,7 @@
           .post('/kittens', this.newKittenParams)
           .then(response => {
             console.log(response.data);
+            this.$router.push('/kittens')
           })
       }
     },
