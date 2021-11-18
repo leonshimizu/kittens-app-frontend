@@ -16,6 +16,8 @@
         <p>Name: <input type="text" v-model="currentKitten.name"></p>
         <p>Age: <input type="text" v-model="currentKitten.age"></p>
         <button v-on:click="updateFunction()">Update</button>
+        <button v-on:click="deleteFunction()">Delete</button>
+        <br>
         <button>Close</button>
       </form>
     </dialog>
@@ -56,6 +58,16 @@ import axios from 'axios'
         console.log("in the update function");
         axios 
           .patch(`/kittens/${this.currentKitten.id}`, this.currentKitten)
+          .then(response => {
+            console.log(response.data);
+          })
+      },
+      deleteFunction: function(){
+        console.log("in the delete function");
+        var index = this.kittens.indexOf(this.currentKitten);
+        this.kittens.splice(index, 1);
+        axios
+          .delete(`/kittens/${this.currentKitten.id}`)
           .then(response => {
             console.log(response.data);
           })
