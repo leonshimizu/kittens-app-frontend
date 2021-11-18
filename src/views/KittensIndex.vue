@@ -7,6 +7,7 @@
         <p>ID: {{ kitten.id }}</p>
         <p>Name: {{ kitten.name }}</p>
         <p>Age: {{ kitten.age }}</p>
+        <p><img v-bind:src="kitten.image"></p>
         <button v-on:click="showModal(kitten)">Edit Kitten</button>
         <hr>
       </li>
@@ -15,6 +16,7 @@
       <form method="dialog">
         <p>Name: <input type="text" v-model="currentKitten.name"></p>
         <p>Age: <input type="text" v-model="currentKitten.age"></p>
+        <p>Image: <input type="text" v-model="currentKitten.image"></p>
         <button v-on:click="updateFunction()">Update</button>
         <button v-on:click="deleteFunction()">Delete</button>
         <br>
