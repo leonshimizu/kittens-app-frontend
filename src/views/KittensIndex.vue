@@ -2,27 +2,31 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <router-link to="/kittens/new">Add Kitten</router-link>
-    <ul>
-      <li v-for="kitten in kittens">
-        <p>ID: {{ kitten.id }}</p>
-        <p>Name: {{ kitten.name }}</p>
-        <p>Age: {{ kitten.age }}</p>
-        <p><img v-bind:src="kitten.image"></p>
-        <button v-on:click="showModal(kitten)">Edit Kitten</button>
-        <hr>
-      </li>
-    </ul>
-    <dialog id="show-modal">
-      <form method="dialog">
-        <p>Name: <input type="text" v-model="currentKitten.name"></p>
-        <p>Age: <input type="text" v-model="currentKitten.age"></p>
-        <p>Image: <input type="text" v-model="currentKitten.image"></p>
-        <button v-on:click="updateFunction()">Update</button>
-        <button v-on:click="deleteFunction()">Delete</button>
-        <br>
-        <button>Close</button>
-      </form>
-    </dialog>
+    <div class="card text-center" v-for="kitten in kittens">
+      <div class="card-header">
+        ID: {{ kitten.id }}
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ kitten.name }}t</h5>
+      <p class="card-text">{{ kitten.age }}</p>
+      <p><img v-bind:src="kitten.image"></p>
+      <button v-on:click="showModal(kitten)" class="btn btn-primary">Edit Kitten</button>
+    </div>
+    <div class="card-footer text-muted">
+      Created: {{ kitten.created_at}}
+    </div>
+      <dialog id="show-modal">
+        <form method="dialog">
+          <p>Name: <input type="text" v-model="currentKitten.name"></p>
+          <p>Age: <input type="text" v-model="currentKitten.age"></p>
+          <p>Image: <input type="text" v-model="currentKitten.image"></p>
+          <button v-on:click="updateFunction()">Update</button>
+          <button v-on:click="deleteFunction()">Delete</button>
+          <br>
+          <button>Close</button>
+        </form>
+      </dialog>
+    </div>
   </div>
 </template>
 
@@ -34,7 +38,7 @@ import axios from 'axios'
     data: function () {
       return {
         message: "Welcome Kittens!",
-        kittens: {},
+        kittens: [],
         currentKitten: {}
       };
     },
