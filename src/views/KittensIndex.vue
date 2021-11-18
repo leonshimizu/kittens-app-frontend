@@ -7,7 +7,7 @@
         ID: {{ kitten.id }}
       </div>
     <div class="card-body">
-      <h5 class="card-title">{{ kitten.name }}t</h5>
+      <h5 class="card-title">{{ kitten.name }}</h5>
       <p class="card-text">{{ kitten.age }}</p>
       <p><img v-bind:src="kitten.image"></p>
       <button v-on:click="showModal(kitten)" class="btn btn-primary">Edit Kitten</button>
